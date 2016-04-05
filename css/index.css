@@ -1,0 +1,81 @@
+/* CSS reset */
+
+body {
+    line-height: 1.5;
+    color: #333;
+    font-family: arial, microsoft yahei;
+    font-size: 14px;
+}
+
+
+/**
+ * Tag-cloud
+ */
+
+.option {}
+
+.options {
+    width: 1200px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.options li {
+    width: 270px;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    line-height: 35px;
+    border-right: #ccc 1px solid;
+    height: 35px;
+}
+
+input,
+select {
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    vertical-align: middle;
+}
+
+#go {
+    display: block;
+    width: 80%;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    background-color: #f287a7;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.main {
+    background-color: #eee;
+}
+
+.tag-cloud {
+    width: 1200px;
+    margin: 0 auto;
+    height: 520px;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    background-color: #01b1dd;
+}
+
+.tag-cloud a {
+    display: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    padding: 1px;
+    text-decoration: none;
+}
+
+.tag-cloud.tag-cloud-printed a {
+    display: block;
+}
