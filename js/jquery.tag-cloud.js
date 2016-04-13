@@ -429,7 +429,27 @@
             };
         }
 
+        function maxSquares(w,h,n){
+            var m = ~~Math.sqrt(w*h);
+            while( ~~(w/m)*~~(h/m) < n ){
+                m--;
+            }
+            return m;
+        }
 
+        function getRowsAndColsByArea(m,n,count){
+            var om = m - opts.offset[1] - opts.offset[3],
+                on = n - opts.offset[0] - opts.offset[2],
+                divistor = maxSquares(m,n,count),
+                result = {
+                    rows: ~~(on / divistor),
+                    cols: ~~(om / divistor),
+                    w: divistor
+                };
+            result.l = opts.offset[1] + (om-divistor*result.cols)/2;
+            result.t = opts.offset[0] + (on-divistor*result.rows)/2;
+            return result;
+        }
 
         function push() {
             var posRc = opts.posRc = debug();
@@ -646,7 +666,7 @@
         }
 
         function initStyle() {
-            var style = ('<style type="text/css" id="tag-cloud-style">.tag-cloud-db{display:block!important;}.tag-cloud{position:relative;overflow:hidden}.tag-cloud .tag-cloud-debug{position:absolute;width:100%;height:100%;z-index:1;left:0;top:0;}.tag-cloud .tag-cloud-debug span{position:absolute;border-bottom:#fff 1px solid;border-right:#fff 1px solid}.tag-cloud .tag-cloud-warp{position:absolute;width:100%;height:100%;z-index:2;left:0;top:0;overflow:hidden;}.tag-cloud .' + opts.currentClass + '{z-index:777;}.tag-cloud-anim-scale{' + prefix.css + 'animation:tag-cloud-anim-scale ' + opts.anim.time + 'ms;}@' + prefix.css + 'keyframes tag-cloud-anim-scale{0%{ ' + prefix.css + 'transform:scale(0)}100%{' + prefix.css + 'transform:scale(1);}}.tag-cloud .tag-cloud-warp.tag-cloud-warp-hover>*{' + prefix.css + 'transition: opacity .3s;opacity: .4!important;filter:alpha(opacity=40)!important;}.tag-cloud .tag-cloud-warp.tag-cloud-warp-hover .' + opts.currentClass + '{' + prefix.css + 'transition:opacity 0s;opacity:1!important;filter:alpha(opacity=100)!important;  }</style>');
+            var style = ('<style type="text/css" id="tag-cloud-style">.tag-cloud-db{display:block!important;}.tag-cloud{position:relative;overflow:hidden}.tag-cloud .tag-cloud-debug{position:absolute;width:100%;height:100%;z-index:1;left:0;top:0;' + prefix.css + 'box-sizing: border-box;box-sizing: border-box;}.tag-cloud .tag-cloud-debug span{position:absolute;border:#fff 1px solid;' + prefix.css + 'box-sizing: border-box;box-sizing: border-box;}.tag-cloud .tag-cloud-warp{position:absolute;width:100%;height:100%;z-index:2;left:0;top:0;overflow:hidden;}.tag-cloud .' + opts.currentClass + '{z-index:777;}.tag-cloud-anim-scale{' + prefix.css + 'animation:tag-cloud-anim-scale ' + opts.anim.time + 'ms;}@' + prefix.css + 'keyframes tag-cloud-anim-scale{0%{ ' + prefix.css + 'transform:scale(0)}100%{' + prefix.css + 'transform:scale(1);}}.tag-cloud .tag-cloud-warp.tag-cloud-warp-hover>*{' + prefix.css + 'transition: opacity .3s;opacity: .4!important;filter:alpha(opacity=40)!important;}.tag-cloud .tag-cloud-warp.tag-cloud-warp-hover .' + opts.currentClass + '{' + prefix.css + 'transition:opacity 0s;opacity:1!important;filter:alpha(opacity=100)!important;  }</style>');
             $("head").prepend(style);
         }
 
@@ -738,7 +758,7 @@
         }
 
         function debug() {
-            var rc = getRowsAndCols(W, H, listLength),
+            var rc = getRowsAndColsByArea(W, H, listLength),
                 html = '<div class="tag-cloud-debug">',
                 pos = [];
             for (var i = 0; i < rc.rows; i++) {
