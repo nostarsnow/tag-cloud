@@ -758,8 +758,13 @@
         }
 
         function debug() {
-            var rc = getRowsAndColsByArea(W, H, listLength),
-                html = '<div class="tag-cloud-debug">',
+            var rc;
+            if ( opts.method === "divisor" ){
+                rc = getRowsAndCols(W, H, listLength);
+            }else{
+                rc = getRowsAndColsByArea(W, H, listLength);
+            }
+            var html = '<div class="tag-cloud-debug">',
                 pos = [];
             for (var i = 0; i < rc.rows; i++) {
                 for (var j = 0; j < rc.cols; j++) {

@@ -21,6 +21,7 @@ $(function() {
         $animtime = $("#tag-animtime"),
         $animdelay = $("#tag-animdelay"),
         $minsize = $("#tag-minsize"),
+        $method = $("#tag-method"),
         $go = $("#go");
 
     function getTimesHtml(times) {
@@ -49,6 +50,7 @@ $(function() {
             bgColor: $bgcolor.val(),
             color: $color.val(),
             colorType: 16,
+            method : $method.val(),
             anim: {
                 name: $anim.val(),
                 time: $animtime.val(),
@@ -150,6 +152,9 @@ $(function() {
         //默认显示的颜色样式。16(如#000),rgb(如rgb(0,0,0)),rgba(如rgba(0,0,0,1))。其实没什么用处的参数。也就调试用
         //默认：16
         colorType: 16,
+        //计算方式。area是根据面积开方计算。divisor是根据公约数来计算。
+        //默认: area
+        method : "area",
         //动画。默认为 { name : "bomb" , time : "500" , delay : "50"}
         //name : "one","warp","bomb"。三种
         //time : 动画时间

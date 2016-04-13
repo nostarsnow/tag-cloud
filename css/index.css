@@ -44,8 +44,10 @@ input[type="checkbox"] {
 
 #go {
     display: block;
-    width: 80%;
-    height: 100%;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    margin:-10px auto 10px;
     text-align: center;
     text-decoration: none;
     background-color: #f287a7;
